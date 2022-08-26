@@ -8,3 +8,12 @@ services:
       - /root/inputFile:/csvserver/inputdata
     environment:
       - CSVSERVER_BORDER=Orange
+  prometheus:
+    image: prom/prometheus:v2.22.0
+    restart: always
+    ports:
+      - "9090:9090"
+    volumes:
+      - type: bind
+        source: ./prometheus.yml
+        target: /etc/prometheus/prometheus.yml
